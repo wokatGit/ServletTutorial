@@ -23,8 +23,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "SevHelloWorld", urlPatterns = {"/unit"},
         initParams = {
-            @WebInitParam(name="maxValue", value="1000"),
-            @WebInitParam(name="minValue", value="1")
+            @WebInitParam(name = "maxValue", value = "1000"),
+            @WebInitParam(name = "minValue", value = "1"),
+            @WebInitParam(name = "minValue", value = "1")
         })
 public class ServletUtil {
 
@@ -106,7 +107,7 @@ public class ServletUtil {
         out.println("</table>");
 
     }
-    
+
     public static void printRequestAttributes(HttpServletRequest request, PrintWriter out) {
 
         out.println("<h1>Request attributes</h1>");
