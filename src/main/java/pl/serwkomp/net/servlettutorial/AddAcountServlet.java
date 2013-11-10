@@ -7,6 +7,8 @@ package pl.serwkomp.net.servlettutorial;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.LinkedList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +36,14 @@ public class AddAcountServlet extends HttpServlet {
         user.setLastName(request.getParameter("lastName"));
         user.setEmail(request.getParameter("email"));
         
-        request.getServletContext().setAttribute("user", user);
+        List<User> users =(List<User>) request.getServletContext().getAttribute("users");
+        
+        if(users == null) {
+            users = new LinkedList<>();
+            request.getServletContext().setAttribute("users", users);
+        }
+        users.add(user);
+        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 

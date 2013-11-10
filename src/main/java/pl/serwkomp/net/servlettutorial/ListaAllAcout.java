@@ -33,9 +33,8 @@ public class ListaAllAcout extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        User user = (User) request.getServletContext().getAttribute("user");
-        LinkedList<User> listUser = new LinkedList<>();
-        
+        List<User> users = (List<User>) request.getServletContext().getAttribute("users");
+
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -45,12 +44,13 @@ public class ListaAllAcout extends HttpServlet {
             out.println("<title>Servlet ListaAllAcout</title>");
             out.println("</head>");
             out.println("<body>");
-            if (user != null) {
+            if (users != null) {
                 out.println("<table border=1> ");
                 out.println("<tr> <td>Imię</td><td>Nazwisko</td><td>Email</td></tr>");
-                for (int i = 0; i < 10; i++) {
-                     out.println("<tr> <td>" + listUser.get(i).getFirstName() + "</td><td>" + listUser.get(i).getLastName() + "</td><td>" + listUser.get(i).getEmail() + "</td></tr>");
+                for (User user : users) {
+                    out.println("<tr> <td>" + user.getFirstName() + "</td><td>" + user.getLastName() + "</td><td>" + user.getEmail() + "</td></tr>");
                 }
+
                 out.println("</table> ");
             } else {
                 out.println("nie ma danych");
